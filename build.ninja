@@ -1,0 +1,12 @@
+ninja_required_version = 1.11.0
+
+root = .
+builddir = build
+
+compiler_flags = -Wall -Wextra -O2 -std=c++2b
+lib = -lraylib -lluajit-5.1
+
+rule clang
+    command = clang++ $compiler_flags $lib $in -o $out
+
+build build/main: clang main.cc
