@@ -71,8 +71,21 @@ local function init()
     return _ninja
 end
 
+local file_util = require "tools.file_util"
+
+local utils = {
+    files_with_prefix = function(prefix, dir)
+        return file_util.list_dir_with_prefix(prefix, dir)
+    end,
+
+    files_with_suffix = function(suffix, dir)
+        return file_util.list_dir_with_suffix(suffix, dir)
+    end
+}
+
 local ninja = {
-    init = init
+    init = init,
+    utils = utils
 }
 
 return ninja
