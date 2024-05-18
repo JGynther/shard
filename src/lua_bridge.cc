@@ -1,4 +1,4 @@
-#include "lua.hpp"
+#include "lua_bridge.h"
 #include "raylib.h"
 
 #define NO_RETURN_VALUES 0
@@ -44,9 +44,6 @@ RAYLIB_EMPTY_CALL(EndDrawing)
 
 namespace Lua {
 
-// Make state available through Lua::
-typedef state state;
-
 state init() {
   state L = luaL_newstate();
   luaL_openlibs(L);
@@ -61,6 +58,6 @@ void load_bindings(state L) {
   REGISTER_FUNCTION(EndDrawing);
 }
 
-void start(state L, const char *file = "src/main.lua") { luaL_dofile(L, file); }
+void start(state L, string file) { luaL_dofile(L, file); }
 
 } // namespace Lua
