@@ -32,4 +32,4 @@ rule regenerate_buildfile
     command = lua build.lua
     generator = true
 
-build build.ninja: regenerate_buildfile build.lua
+build build.ninja: regenerate_buildfile build.lua tools/ninja.lua

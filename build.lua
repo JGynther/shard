@@ -41,7 +41,7 @@ config:add_build("shard", "link", table.concat(targets, " "))
 -- Handle build.ninja itself
 -- FIXME: this is hack for declaring rule as generator
 config:add_rule("regenerate_buildfile", "lua build.lua", "\n    generator = true")
-config:add_build("build.ninja", "regenerate_buildfile", "build.lua")
+config:add_build("build.ninja", "regenerate_buildfile", "build.lua tools/ninja.lua")
 
 -- Generate build.ninja
 config:write_buildfile(config:generate())
