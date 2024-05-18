@@ -1,6 +1,5 @@
 #include "lua.hpp"
 #include "raylib.h"
-#include <lua.h>
 
 #define NO_RETURN_VALUES 0
 #define ONE_RETURN_VALUE 1
@@ -62,8 +61,6 @@ void load_bindings(state L) {
   REGISTER_FUNCTION(EndDrawing);
 }
 
-void start(state L, const char *file = "src/main.lua") {
-  bool test = luaL_dofile(L, file);
-}
+void start(state L, const char *file = "src/main.lua") { luaL_dofile(L, file); }
 
 } // namespace Lua
