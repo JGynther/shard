@@ -27,3 +27,9 @@ rule link
     command = clang++ $lib $in -o $out
 
 build shard: link build/main.o build/lua_bridge.o
+
+rule regenerate_buildfile
+    command = lua build.lua
+    generator = true
+
+build build.ninja: regenerate_buildfile build.lua

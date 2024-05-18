@@ -38,5 +38,10 @@ config:add_variable("lib", "-lraylib -lluajit-5.1")
 config:add_rule("link", "clang++ $lib $in -o $out")
 config:add_build("shard", "link", table.concat(targets, " "))
 
+-- Handle build.ninja itself
+-- FIXME: this is hack for declaring rule as generator
+config:add_rule("regenerate_buildfile", "lua build.lua", "\n    generator = true")
+config:add_build("build.ninja", "regenerate_buildfile", "build.lua")
+
 -- Generate build.ninja
 config:write_buildfile(config:generate())
