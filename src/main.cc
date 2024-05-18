@@ -1,5 +1,4 @@
-
-#include "src/lua_bridge.cc"
+#include "lua_bridge.h"
 #include <cstdlib>
 
 int main() {
