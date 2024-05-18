@@ -80,6 +80,10 @@ local utils = {
 
     files_with_suffix = function(suffix, dir)
         return file_util.list_dir_with_suffix(suffix, dir)
+    end,
+
+    filename = function(path)
+        return file_util.filename(path)
     end
 }
 

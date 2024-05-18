@@ -50,10 +50,18 @@ int list_dir_with_suffix(lua_State *L) {
   return list_dir_base<true, false>(L, dir, suffix);
 }
 
+int filename(lua_State *L) {
+  string path = luaL_checkstring(L, 1);
+  string name = std::filesystem::path(path).filename().c_str();
+  lua_pushstring(L, name);
+  return 1;
+}
+
 static const struct luaL_Reg file_util[] = {
     {"list_dir", list_dir},
     {"list_dir_with_prefix", list_dir_with_prefix},
     {"list_dir_with_suffix", list_dir_with_suffix},
+    {"filename", filename},
     {NULL, NULL},
 };
 
