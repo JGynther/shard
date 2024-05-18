@@ -38,8 +38,5 @@ config:add_variable("lib", "-lraylib -lluajit-5.1")
 config:add_rule("link", "clang++ $lib $in -o $out")
 config:add_build("shard", "link", table.concat(targets, " "))
 
--- Build main.cc
--- config:add_build("build/main", "clang", "main.cc")
-
 -- Generate build.ninja
 config:write_buildfile(config:generate())
