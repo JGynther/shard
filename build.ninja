@@ -7,10 +7,8 @@ builddir = build
 
 compiler_flags = -Wall -Wextra -O2 -std=c++2b
 
-lib = -lraylib -lluajit-5.1
-
 rule clang
-    command = clang++ $compiler_flags $lib $in -o $out
+    command = clang++ $compiler_flags -c $in -o $out
 
 module_flags = -shared -fPIC
 
@@ -19,4 +17,13 @@ rule build_lua_module
 
 build tools/file_util.so: build_lua_module tools/lua_file_util.cc
 
-build build/main: clang main.cc
+build build/main.o: clang src/main.cc
+
+build build/lua_bridge.o: clang src/lua_bridge.cc
+
+lib = -lraylib -lluajit-5.1
+
+rule link
+    command = clang++ $lib $in -o $out
+
+build shard: link build/main.o build/lua_bridge.o

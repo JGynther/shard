@@ -9,3 +9,6 @@ build
 
 # C++
 *.so
+
+# Executable
+shard 
